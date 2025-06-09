@@ -56,8 +56,45 @@ class FakeDice {
     // Add control button to token controls
     this.addControlButton();
 
+    // Also add a macro bar button as alternative access
+    this.createMacro();
+
     // Hook into dice rolls
     this.hookDiceRolls();
+
+    // Add chat command
+    this.registerChatCommand();
+
+    console.log(`${this.ID} | Ready - GM controls initialized`);
+  }
+
+  static registerChatCommand() {
+    // Register chat command
+    Hooks.on('chatMessage', (html, content, msg) => {
+      if (content === '/fakedice' || content === '/fd') {
+        if (!game.user.isGM) {
+          ui.notifications.warn("Only GMs can configure FakeDice");
+          return false;
+        }
+        this.showDialog();
+        return false; // Prevent the message from being sent to chat
+      }
+    });
+  }
+
+  static async createMacro() {
+    // Create a macro for easy access if one doesn't exist
+    const existingMacro = game.macros.find(m => m.name === "FakeDice Config");
+    if (!existingMacro) {
+      await Macro.create({
+        name: "FakeDice Config",
+        type: "script",
+        img: "icons/dice/d20black.svg",
+        command: "FakeDice.showDialog();",
+        flags: { "fakedice.generated": true }
+      });
+      ui.notifications.info("FakeDice: Configuration macro created in your macro bar!");
+    }
   }
 
   static addControlButton() {
@@ -65,15 +102,17 @@ class FakeDice {
     Hooks.on('getSceneControlButtons', (controls) => {
       if (!game.user.isGM) return;
 
-      const tokenControls = controls.find(c => c.name === 'token');
-      if (tokenControls) {
-        tokenControls.tools.push({
+      // Add to the notes layer instead of token layer for better visibility
+      const notesControls = controls.find(c => c.name === 'notes');
+      if (notesControls) {
+        notesControls.tools.push({
           name: 'fakedice',
-          title: 'FAKEDICE.controls.title',
-          icon: 'fas fa-dice',
+          title: game.i18n.localize('FAKEDICE.controls.title'),
+          icon: 'fas fa-dice-d20',
           onClick: () => this.showDialog(),
           toggle: true,
-          active: game.settings.get(this.ID, this.SETTINGS.ENABLED)
+          active: game.settings.get(this.ID, this.SETTINGS.ENABLED),
+          button: true
         });
       }
     });
