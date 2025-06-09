@@ -10,8 +10,10 @@
   },
   "authors": [
     {
-      "name": "Claude (Recreated for v13)",
-      "discord": "N/A"
+      "name": "MrTranscended",
+      "url": "https://github.com/MrTranscended",
+      "discord": "MrTranscended#4956",
+      "flags": {}
     }
   ],
   "esmodules": [
