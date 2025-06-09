@@ -1,0 +1,36 @@
+{
+  "id": "fakedice",
+  "title": "FakeDice",
+  "description": "A FoundryVTT module that helps you get dice rolls with target values using operators like >, >=, <, <=, and =",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13",
+    "maximum": "13"
+  },
+  "authors": [
+    {
+      "name": "Claude (Recreated for v13)",
+      "discord": "N/A"
+    }
+  ],
+  "esmodules": [
+    "scripts/fakedice.js"
+  ],
+  "styles": [
+    "styles/fakedice.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "relationships": {
+    "requires": []
+  },
+  "flags": {
+    "allowBugReporter": true
+  }
+}

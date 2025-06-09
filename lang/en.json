@@ -1,0 +1,33 @@
+{
+  "FAKEDICE": {
+    "settings": {
+      "enabled": {
+        "name": "Enable Fake Dice",
+        "hint": "Enable fake dice roll modification for the GM"
+      },
+      "target": {
+        "name": "Target Value",
+        "hint": "The target criteria for dice rolls (e.g., >=10, <5, =20)"
+      },
+      "playerEnabled": {
+        "name": "Player Fake Dice Enable",
+        "hint": "Allow fake dice modification for players as well"
+      }
+    },
+    "controls": {
+      "title": "Fake Dice Configuration"
+    },
+    "dialog": {
+      "title": "Fake Dice Settings",
+      "target": "Target Result:",
+      "targetHint": "Examples: =20 (exactly 20), >=10 (10 or higher), <5 (less than 5)",
+      "enabled": "Enable Fake Dice for GM",
+      "playerEnabled": "Enable Fake Dice for Players",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "notifications": {
+      "saved": "Fake Dice settings saved!"
+    }
+  }
+}
